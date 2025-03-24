@@ -1,0 +1,50 @@
+/* Container Styling */
+.detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.detail-container:hover {
+  transform: translateY(-5px);
+  
+}
+
+/* Title Styling */
+.detail-title {
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 26px;
+  font-weight: bold;
+  color: linear-gradient( #007bff, #00d4ff);
+  padding: 12px;
+  margin-bottom: 20px;
+
+}
+
+/* Paragraph Styling */
+.detail-text {
+  font-size: 17px;
+  line-height: 1.8;
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  color: #333;
+  padding: 14px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.detail-text:hover {
+  background: linear-gradient(135deg, #e3f2fd, #f1f3f5);
+
+}
+
+/* Final Paragraph Emphasis */
+.detail-highlight {
+  font-weight: bold;
+  text-align: center;
+  color: #0e1216;
+  font-size: 18px;
+  margin-top: 20px;
+}
