@@ -53,6 +53,9 @@ The **Classroom Availability Checker** is a web-based application designed to op
 5. **Navigation Handling**
    - Default landing pages based on user roles.
    - Restricted access for unauthorized users (403 Forbidden page).
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## API Endpoints
 
