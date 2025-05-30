@@ -1,0 +1,82 @@
+.admin-User-container {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 30px 24px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-User-container h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: #2c3e50;
+  letter-spacing: 0.5px;
+}
+
+.options-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.options-buttons button {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #3498db, #4aadef);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.25);
+}
+
+.options-buttons button:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(41, 128, 185, 0.3);
+}
+
+.back-button {
+  margin-top: 24px;
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 30%;
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.25);
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, #ff6f61, #e74c3c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.35);
+}
+
+/* Mobile Responsive */
+@media (max-width: 500px) {
+  .admin-User-container {
+    margin: 40px 16px;
+    padding: 24px 18px;
+  }
+
+  .back-button {
+    width: 100%;
+  }
+}
+
+  
+  
