@@ -46,27 +46,30 @@
   overflow-y: auto;
 }
 /* src/App.css */
-/* Example for smaller screens */
-@media (max-width: 768px) {
+/* Add at the end of your App.css */
+@media (max-width: 600px) {
   .app-container {
     flex-direction: column;
+    height: auto;
   }
-
   .sidebar {
     width: 100%;
     height: auto;
-    display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-around;
+    padding: 10px 0;
   }
-
   .main-content {
-    height: calc(100vh - 60px);
+    padding: 0;
   }
-
   .header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px;
+  }
+  .content {
+    padding: 10px;
+    height: auto;
   }
 }

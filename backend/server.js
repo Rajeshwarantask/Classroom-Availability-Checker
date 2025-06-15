@@ -21,6 +21,16 @@ app.use("/api", classroomsRouter);
 const dashboardRoutes = require("./routes/dashboard");
 app.use("/api", dashboardRoutes);
 
+const timetableRoutes = require('./routes/timetable');
+app.use('/api/timetable', timetableRoutes);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'frontend/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

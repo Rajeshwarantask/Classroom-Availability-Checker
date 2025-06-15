@@ -42,25 +42,25 @@ const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const prevPeriodRef = useRef(null);
   const [selectedDay, setSelectedDay] = useState(null);
 
+  const prevPeriodRef = useRef(null);
+  const autoTimeoutRef = useRef(null);
+
   const fetchStats = async (period = null, day = null) => {
-    const url = `/api/dashboard-stats?${period !== null ? `period=${period}` : ""}${
-      day !== null ? `&day=${day}` : ""
-    }`;
+    const url = `/api/dashboard-stats?${period !== null ? `period=${period}` : ""}${day !== null ? `&day=${day}` : ""}`;
     const res = await fetch(url);
     const data = await res.json();
     setStats(data);
 
     if (period === null && data.currentPeriod !== -1) {
-      prevPeriodRef.current = data.currentPeriod; // Update if no period is manually selected
+      prevPeriodRef.current = data.currentPeriod; // Update ref only in auto mode
     }
   };
 
-  // Initial + time updater
+  // Initial fetch + real-time clock
   useEffect(() => {
-    fetchStats(); // Initial fetch
+    fetchStats(); // Initial auto fetch
 
     const timeUpdater = setInterval(() => {
       setCurrentTime(new Date());
@@ -69,46 +69,60 @@ const Dashboard = () => {
     return () => clearInterval(timeUpdater);
   }, []);
 
-  // Period-based auto fetch logic
+  // Period-based auto-fetch logic
   useEffect(() => {
-    let autoInterval = null;
+  let isMounted = true;
 
-    // Auto-fetch if no manual period is selected
-    if (selectedPeriod === null) {
-      autoInterval = setInterval(() => {
-        const now = new Date();
-        const currentPeriod = getCurrentPeriod(now);
+  const autoFetch = async () => {
+    const now = new Date();
+    const currentPeriod = getCurrentPeriod(now);
 
-        // Fetch stats if a new valid period has started
-        if (currentPeriod !== -1 && currentPeriod !== prevPeriodRef.current) {
-          fetchStats(); // Fetch only if the period changes
-        }
-      }, 60000); // check every 1 minute
+    if (currentPeriod === -1 && prevPeriodRef.current === -1) {
+      console.log("⛔ Still outside class hours, skipping fetch.");
+    } else if (currentPeriod !== prevPeriodRef.current) {
+      console.log(`🔁 Period change detected (was ${prevPeriodRef.current}, now ${currentPeriod}). Fetching...`);
+      await fetchStats();
+      prevPeriodRef.current = currentPeriod;
+    } else {
+      console.log("✅ Period unchanged. No fetch needed.");
     }
 
-    return () => {
-      if (autoInterval) clearInterval(autoInterval);
-    };
-  }, [selectedPeriod]); // Depend on selectedPeriod for changes
+    if (isMounted) {
+      autoTimeoutRef.current = setTimeout(autoFetch, 3595000); // every 59m55s
+    }
+  };
+
+  if (selectedPeriod === null && selectedDay === null) {
+    // Only if both day and period are auto
+    autoFetch();
+  }
+
+  return () => {
+    isMounted = false;
+    if (autoTimeoutRef.current) clearTimeout(autoTimeoutRef.current);
+  };
+}, [selectedPeriod, selectedDay]); // Runs only when manual controls change
 
   // Manual period fetch
   useEffect(() => {
     if (selectedPeriod !== null) {
-      fetchStats(selectedPeriod); // Fetch stats with selected period
+      fetchStats(selectedPeriod);
     } else {
-      fetchStats(); // Auto mode
+      fetchStats();
     }
   }, [selectedPeriod]);
 
-  // Fetch stats when day or period changes
+  // Fetch stats when day or period is explicitly changed
   useEffect(() => {
-    fetchStats(selectedPeriod, selectedDay);
-  }, [selectedPeriod, selectedDay]);
+    if (selectedPeriod !== null || selectedDay !== null) {
+      fetchStats(selectedPeriod, selectedDay);
+    }
+  }, [selectedDay, selectedPeriod]);
 
   if (!stats) return <div>Loading...</div>;
 
   const donutOptions = {
-    cutout: "60%",
+    cutout: "65%",
     plugins: {
       legend: { position: "bottom", labels: { boxWidth: 12, padding: 10 } },
       tooltip: { enabled: true },
@@ -174,6 +188,7 @@ const Dashboard = () => {
           </select>
         </span>
       </div>
+
       <div className="dashboard-grid">
         <div className="card small-chart">
           <h4>Free vs Occupied</h4>

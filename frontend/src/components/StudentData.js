@@ -7,9 +7,8 @@ const StudentData = ({ setView }) => {
       <h1>Student Data</h1>
       <div className="options-buttons">
         <button onClick={() => setView("addStudent")}>Add Timetable</button>
-        <button onClick={() => setView("modifyStudent")}>Modify Timetable</button>
+        <button onClick={() => setView("studentChangeOptions")}>Modify Timetable</button>
         <button onClick={() => setView("viewTimetable")}>View Timetable</button>
-        
       </div>
     </div>
   );
