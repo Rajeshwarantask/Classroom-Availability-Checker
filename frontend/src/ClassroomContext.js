@@ -8,7 +8,7 @@ export const ClassroomContext = createContext();
 export const ClassroomProvider = ({ children }) => {
   const [classrooms, setClassrooms] = useState([]);
 
-  // Fetch the initial classroom data from the API
+  // Fetch the initial classroom data from the API and load
   const fetchClassrooms = async () => {
     try {
       const response = await axios.get('/api/classrooms');
