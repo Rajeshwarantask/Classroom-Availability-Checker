@@ -11,7 +11,7 @@ export const ClassroomProvider = ({ children }) => {
   // Fetch the initial classroom data from the API
   const fetchClassrooms = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/classrooms');
+      const response = await axios.get('/api/classrooms');
       setClassrooms(response.data);
     } catch (error) {
       console.error('Error fetching classrooms:', error);

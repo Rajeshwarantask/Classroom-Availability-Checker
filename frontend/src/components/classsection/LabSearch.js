@@ -14,7 +14,7 @@ const LabSearch = ({ goBack }) => {
   // Fetch available labs from backend
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/lab-list")
+      .get("/api/lab-list")
       .then((res) => {
         setLabList(res.data);
         if (res.data.length > 0) {
