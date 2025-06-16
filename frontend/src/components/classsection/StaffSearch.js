@@ -12,8 +12,7 @@ const StaffSearch = ({ goBack }) => {
   const [facultyList, setFacultyList] = useState([]);
 
   useEffect(() => {
-    // Fetch the faculty list from backend
-    
+    // Fetch the faculty list from backend    
     axios.get("/api/faculty-list")
       .then((res) => {
         setFacultyList(res.data);
