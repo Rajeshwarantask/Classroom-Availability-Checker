@@ -37,7 +37,7 @@ const LabSearch = ({ goBack }) => {
     try {
       console.log(`🔍 Checking lab availability for Room: ${selectedLab}, Day: ${day}, Period: ${period}`);
 
-      const response = await axios.get("http://localhost:5000/api/check-lab-availability", {
+      const response = await axios.get("/check-lab-availability", {
         params: { room: selectedLab, day, period },
       });      
 

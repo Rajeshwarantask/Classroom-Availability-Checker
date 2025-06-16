@@ -34,7 +34,7 @@ const StaffSearch = ({ goBack }) => {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/check-staff", {
+      const response = await axios.get("/api/check-staff", {
         params: { faculty, day, period },
       });
       console.log("Check Staff Response:", response.data);
