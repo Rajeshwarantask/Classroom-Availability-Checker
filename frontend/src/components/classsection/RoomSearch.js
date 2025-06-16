@@ -22,7 +22,7 @@ const RoomSearch = ({ goBack }) => {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/check-availability", {
+      const response = await axios.get("/api/check-availability", {
         params: { room: room.toUpperCase(), day, period },
       });
 

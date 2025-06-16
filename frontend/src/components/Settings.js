@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import './Settings.css';
-import StudentData from './StudentData'; // Fixed Import
-import AdminUserPanel from './AdminUserPanel';
+import StudentData from './StudentData'; // Student Timetable Dashboard
+import StudentChangeOptions from './StudentChangeOptions'; // <- NEW Import
+import AdminUserPanel from './AdminUserPanel'; // Admin credentials panel
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(''); // Track selected panel
+  const [selectedOption, setSelectedOption] = useState(''); // To switch views
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    // Replace with actual credentials
     if (username === 'admin' && password === 'pass') {
       setIsLoggedIn(true);
     } else {
@@ -24,7 +23,7 @@ const AdminLogin = () => {
     setIsLoggedIn(false);
     setUsername('');
     setPassword('');
-    setSelectedOption(''); // Reset selected option
+    setSelectedOption('');
   };
 
   const handleOptionSelect = (option) => {
@@ -34,33 +33,47 @@ const AdminLogin = () => {
   return (
     <div className="admin-layout">
       {!isLoggedIn ? (
-        // Login Form
         <div className="admin-login-container">
           <h2>Admin Login</h2>
           <form onSubmit={handleLogin}>
             <div className="input-group">
               <label>Username:</label>
-              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
             </div>
             <div className="input-group">
               <label>Password:</label>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
             <div className="button-container">
               <button type="submit">Login</button>
             </div>
           </form>
         </div>
-      ) : selectedOption === 'addStudent' ? (  
-        // Show Student Data Panel
+      ) : selectedOption === 'addStudent' ? (
         <div className="student-data-container">
           <StudentData setView={setSelectedOption} />
           <button onClick={() => setSelectedOption('')} className="back-button">
             Back
           </button>
         </div>
-      ) : selectedOption === 'adminUserModification' ? ( 
-        
+      ) : selectedOption === 'studentChangeOptions' ? (
+        <div className="student-data-container">
+          <StudentChangeOptions />
+          <button onClick={() => setSelectedOption('')} className="back-button">
+            Back
+          </button>
+        </div>
+      ) : selectedOption === 'adminUserModification' ? (
         <div className="student-data-container">
           <AdminUserPanel setView={setSelectedOption} />
           <button onClick={() => setSelectedOption('')} className="back-button">
@@ -68,25 +81,31 @@ const AdminLogin = () => {
           </button>
         </div>
       ) : (
-        // Admin Panel
         <div className="admin-panel-wrapper">
           <div className="admin-dashboard">
             <h2 className="dashboard-title">Welcome, Admin</h2>
             <div className="dashboard-cards">
-              <div className="dashboard-card glass" onClick={() => handleOptionSelect('adminUserModification')}>
+              <div
+                className="dashboard-card glass"
+                onClick={() => handleOptionSelect('adminUserModification')}
+              >
                 <h3>Admin Settings</h3>
                 <p>Update Admin Info & Password</p>
                 <button className="dashboard-btn">Go</button>
               </div>
-              <div className="dashboard-card glass" onClick={() => handleOptionSelect('addStudent')}>
+              <div
+                className="dashboard-card glass"
+                onClick={() => handleOptionSelect('addStudent')}
+              >
                 <h3>Student Timetable</h3>
                 <p>Manage Student Data & Rooms</p>
                 <button className="dashboard-btn">Go</button>
               </div>
             </div>
-            <button onClick={handleLogout} className="logout-btn">Logout</button>
+            <button onClick={handleLogout} className="logout-btn">
+              Logout
+            </button>
           </div>
-
         </div>
       )}
     </div>

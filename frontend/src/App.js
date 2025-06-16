@@ -9,13 +9,24 @@ import "./App.css";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("dashboard");
+  const [sidebarOpen, setSidebarOpen] = useState(true); // for desktop
+  const [sidebarMobile, setSidebarMobile] = useState(false); // for mobile
 
   return (
     <div className="app-container">
-      <Sidebar onSelectPage={setSelectedPage} />
-      <div className="main-content">
+      <Sidebar
+        onSelectPage={setSelectedPage}
+        open={sidebarOpen}
+        mobileOpen={sidebarMobile}
+        setOpen={setSidebarOpen}
+        setMobileOpen={setSidebarMobile}
+        // ...other props
+        className={sidebarMobile ? "sidebar sidebar-active" : "sidebar"}
+      />
+      <div className={`main-content${sidebarMobile ? " content-shift" : ""}`}>
         <header className="header">
           <div className="header__left">
+            
             <h2>Welcome, Rajeshwaran</h2>
           </div>
           <div className="header__right">
