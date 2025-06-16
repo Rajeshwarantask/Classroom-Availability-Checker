@@ -13,7 +13,7 @@ const StaffSearch = ({ goBack }) => {
 
   useEffect(() => {
     // Fetch the faculty list from backend
-    axios.get("http://localhost:5000/api/faculty-list")
+    axios.get("/api/faculty-list")
       .then((res) => {
         setFacultyList(res.data);
         if (res.data.length > 0) {
