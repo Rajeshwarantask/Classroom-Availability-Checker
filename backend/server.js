@@ -11,9 +11,8 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.error("MongoDB connection error:", err));
-//
-// Import student routes and use them
 
+// Import student routes and use them
 // const studentsRouter = require("./routes/students"); // Add this line to import the student routes
 // app.use("/api/students", studentsRouter);  // Add this to use the student routes at /api/students
 
