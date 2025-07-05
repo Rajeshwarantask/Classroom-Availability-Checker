@@ -1,0 +1,220 @@
+/* src/components/Sidebar.css */
+.sidebar {
+  width: 220px;
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px 0 20px 0;
+  height: 100vh;
+  transition: width 0.3s, left 0.3s;
+  position: relative;
+  z-index: 1002;
+  box-shadow: 2px 0 8px rgba(44,62,80,0.07);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+  min-width: 60px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 16px 16px;
+}
+
+.sidebar__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar-collapse-btn,
+.sidebar-mobile-close {
+  background: none;
+  border: none;
+  color: #ecf0f1;
+  cursor: pointer;
+  font-size: 22px;
+  margin-left: 4px;
+  transition: color 0.2s;
+}
+
+.sidebar-mobile-close {
+  display: none;
+}
+
+.sidebar__nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar__nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.sidebar__nav-item:hover {
+  background: #34495e;
+}
+
+.sidebar__nav-item .material-icons {
+  margin-right: 16px;
+  font-size: 22px;
+}
+
+.sidebar.collapsed .sidebar__nav-item .sidebar__label {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar__nav-item .material-icons {
+  margin-right: 0;
+}
+
+.sidebar.collapsed .sidebar__title {
+  text-align: center;
+  font-size: 1.6rem;
+  padding: 0;
+}
+
+.sidebar.collapsed .sidebar-collapse-btn {
+  margin-left: 0;
+}
+
+.sidebar__label {
+  transition: opacity 0.2s;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 62, 80, 0.25);
+  z-index: 1001;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile styles */
+/* ...existing code... */
+
+/* --- Responsive Sidebar Slide for Mobile --- */
+@media (max-width: 600px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    max-width: 80vw;
+    min-width: 120px;
+    background: #2c3e50;
+    z-index: 2002;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    box-shadow: 2px 0 16px rgba(44,62,80,0.13);
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar.sidebar-active {
+    transform: translateX(0);
+  }
+  .sidebar.collapsed {
+    width: 60px;
+    min-width: 60px;
+    transform: translateX(-100%);
+  }
+  .sidebar__top .sidebar-collapse-btn {
+    display: none;
+  }
+  .sidebar__top .sidebar-mobile-close {
+    display: inline-block;
+  }
+  .sidebar-overlay {
+    display: block;
+  }
+  .main-content.content-shift {
+    margin-left: 220px;
+    transition: margin-left 0.3s cubic-bezier(.4,0,.2,1);
+  }
+}
+
+/* --- Bottom Nav for Ultra-Small Screens --- */
+@media (max-width: 600px) {
+  .sidebar {
+    background: transparent;
+    box-shadow: none;
+    width: 100vw;
+    min-width: 0;
+    max-width: none;
+    height: 0;
+    padding: 0;
+    position: static;
+    transform: none !important;
+  }
+  .sidebar__top,
+  .sidebar__title,
+  .sidebar-collapse-btn,
+  .sidebar-mobile-close {
+    display: none !important;
+  }
+  .sidebar__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background: #2c3e50;
+    box-shadow: 0 -2px 8px rgba(44,62,80,0.13);
+    z-index: 2000;
+    padding: 0;
+    margin: 0;
+    height: 54px;
+  }
+  .sidebar__nav-item {
+    flex: 1;
+    justify-content: center;
+    margin-bottom: 0;
+    padding: 0;
+    border-radius: 0;
+    font-size: 1.1rem;
+    background: none;
+    color: #ecf0f1;
+    height: 54px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar__nav-item .material-icons {
+    margin: 0;
+    font-size: 24px;
+  }
+  .sidebar__label {
+    display: none;
+  }
+  .sidebar-overlay {
+    display: none !important;
+  }
+  .main-content.content-shift {
+    margin-left: 0 !important;
+  }
+}

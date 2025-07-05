@@ -1,0 +1,166 @@
+:root {
+  --primary: #4f8cff;
+  --secondary: #f7faff;
+  --accent: #ffb347;
+  --success: #4caf50;
+  --danger: #f44336;
+  --info: #00bcd4;
+  --text: #222b45;
+  --card-bg: #fff;
+  --card-shadow: 0 2px 8px rgba(79, 140, 255, 0.08);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--secondary);
+}
+
+/* Container */
+.dashboard-container {
+  padding: 16px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Heading */
+.dashboard-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+/* Chart card */
+.card.small-chart {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 280px;
+}
+
+.card.small-chart h4 {
+  margin: 10px 0 20px;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.card.small-chart canvas {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+/* Full-width Bar Chart */
+.card.full-width {
+  grid-column: 1 / -1;
+  padding: 20px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+}
+
+/* Bar chart + Info layout */
+.bar-info-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.bar-chart {
+  flex: 2;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar-chart canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.info-panel {
+  flex: 1;
+  background: var(--secondary);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.97rem;
+  color: var(--text);
+}
+
+/* Time Row */
+.time-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.separator {
+  color: #b0b0b0;
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .bar-info-container {
+    flex-direction: column;
+  }
+
+  .bar-chart,
+  .info-panel {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+
+  .dashboard-heading {
+    font-size: 1.5rem;
+  }
+
+  .card.small-chart {
+    height: 240px;
+    padding: 12px;
+  }
+
+  .card.small-chart canvas {
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  .info-panel {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .bar-info-container {
+    gap: 12px;
+  }
+}
+.legend-strike {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
