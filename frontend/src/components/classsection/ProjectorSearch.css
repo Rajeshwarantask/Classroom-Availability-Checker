@@ -1,0 +1,99 @@
+.projector-search {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.projector-search h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.projector-search .filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.projector-search .filters label {
+  font-weight: bold;
+  text-align: left;
+}
+
+.projector-search .filters input,
+.projector-search .filters select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.projector-search .button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.projector-search .button-group button {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.projector-search .button-group button:hover {
+  background-color: #0056b3;
+}
+
+.projector-search .button-group button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.projector-search .error {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.projector-search .results {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.projector-search .results h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.projector-search pre {
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+@media (max-width: 480px) {
+  .projector-search {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .projector-search .button-group {
+    flex-direction: column;
+  }
+}
