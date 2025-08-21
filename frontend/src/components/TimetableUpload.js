@@ -215,6 +215,7 @@ const TimetableUpload = ({ onBack }) => {
             disabled={!selectedFile || uploading}
           >
             {uploading && <div className="loading-spinner"></div>}
+            }
             {uploading ? 'Processing...' : 'Upload Timetable'}
           </button>
           
