@@ -3,6 +3,7 @@ import './Settings.css';
 import StudentData from './StudentData'; // Student Timetable Dashboard
 import StudentChangeOptions from './StudentChangeOptions'; // <- NEW Import
 import AdminUserPanel from './AdminUserPanel'; // Admin credentials panel
+import TimetableUpload from './TimetableUpload'; // Timetable upload component
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -80,6 +81,10 @@ const AdminLogin = () => {
             Back
           </button>
         </div>
+      ) : selectedOption === 'timetableUpload' ? (
+        <div className="student-data-container">
+          <TimetableUpload onBack={() => setSelectedOption('')} />
+        </div>
       ) : (
         <div className="admin-panel-wrapper">
           <div className="admin-dashboard">
@@ -105,6 +110,14 @@ const AdminLogin = () => {
             <button onClick={handleLogout} className="logout-btn">
               Logout
             </button>
+            <div
+              className="dashboard-card glass"
+              onClick={() => handleOptionSelect('timetableUpload')}
+            >
+              <h3>Upload Timetable</h3>
+              <p>Upload .doc/.docx timetable files</p>
+              <button className="dashboard-btn">Go</button>
+            </div>
           </div>
         </div>
       )}

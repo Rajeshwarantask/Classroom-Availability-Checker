@@ -25,6 +25,9 @@ app.use("/api", dashboardRoutes);
 const timetableRoutes = require('./routes/timetable');
 app.use('/api/timetable', timetableRoutes);
 
+const timetableUploadRoutes = require('./routes/timetableUpload');
+app.use('/api/timetable', timetableUploadRoutes);
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
 
